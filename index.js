@@ -72,14 +72,13 @@ class Carousel {
   generateStyleTag() {
     const styleTag = document.createElement("style");
     styleTag.id = "move";
-    styleTag.append(this.getCarouselAnimation());
+    styleTag.append(
+      `@keyframes move {0% {transform: translateX(0px);}100% {transform: translateX(-${
+        this.wrap.offsetWidth - 3 * this.cloneChildWidth - 2 * this.itemSpace
+      }px);}`
+    );
 
     document.head.appendChild(styleTag);
-  }
-  getCarouselAnimation() {
-    return `@keyframes move {0% {transform: translateX(0px);}100% {transform: translateX(-${
-      this.wrap.offsetWidth - 3 * this.cloneChildWidth - 2 * this.itemSpace
-    }px);}`;
   }
   forEachHTMLCollection(collection, callback) {
     for (let i = 0; i < collection.length; i++) {
