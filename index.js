@@ -5,12 +5,14 @@ class Carousel {
       this.containerWidth = options.width || 800;
       this.itemSpace = options.itemSpace || 20;
       this.direction = options.direction || "left";
+      this.time = options.time || 50;
       this.container = document.querySelector(this.containerEl);
       this.wrap = document.querySelector(`${this.containerEl} .carousel-wrap`);
       this.items = document.querySelectorAll(
         `${this.containerEl} .carousel-wrap .carousel-item`
       );
       this.cloneChildWidth = 0;
+      this.cloneCount = 0;
 
       this.initContainer();
     } else {
@@ -33,7 +35,6 @@ class Carousel {
       if (i !== 0) {
         children[i].style.marginLeft = this.itemSpace + "px";
         length += this.itemSpace;
-        this.cloneChildWidth = width;
       }
     }
 
@@ -41,7 +42,9 @@ class Carousel {
     this.wrap.style.overflow = "auto";
 
     if (length > this.containerWidth) {
-      this.wrap.style.animation = `move 50s linear infinite both running ${
+      this.wrap.style.animation = `move ${
+        this.time
+      }s linear infinite both running ${
         this.direction === "left" ? "normal" : "reverse"
       }`;
       this.wrap.onmouseover = () => {
@@ -74,15 +77,20 @@ class Carousel {
     complete();
 
     for (let i = 0; i <= count; i++) {
-      this.wrap.append(this.items[i].cloneNode(true));
+      const element = this.items[i];
+      this.wrap.append(element.cloneNode(true));
+      this.cloneChildWidth += element.offsetWidth;
     }
+    this.cloneCount = count;
   }
   generateStyleTag() {
     const styleTag = document.createElement("style");
     styleTag.id = "move";
     styleTag.append(
       `@keyframes move {0% {transform: translateX(0px);}100% {transform: translateX(-${
-        this.wrap.offsetWidth - 3 * this.cloneChildWidth - 2 * this.itemSpace
+        this.wrap.offsetWidth -
+        this.cloneChildWidth -
+        this.cloneCount * this.itemSpace
       }px);}`
     );
 
@@ -100,4 +108,5 @@ new Carousel({
   direction: "right",
   width: 800,
   itemSpace: 20,
+  time: 25,
 });
