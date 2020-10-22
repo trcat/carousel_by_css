@@ -4,13 +4,17 @@ class Carousel {
       this.containerEl = options.el;
       this.containerWidth = options.width || 800;
       this.itemSpace = options.itemSpace || 20;
-      this.cloneChildWidth = 0;
       this.container = document.querySelector(this.containerEl);
       this.wrap = document.querySelector(`${this.containerEl} .carousel-wrap`);
-      this.items = document.querySelectorAll(`${this.containerEl} .carousel-wrap .carousel-item`);
+      this.items = document.querySelectorAll(
+        `${this.containerEl} .carousel-wrap .carousel-item`
+      );
+      this.cloneChildWidth = 0;
+      this.direction = "left";
+
       this.initContainer();
     } else {
-      throw new Error('组件使用不规范, 请务必设定 el 属性!')
+      throw new Error("组件使用不规范, 请务必设定 el 属性!");
     }
   }
   initContainer() {
@@ -90,11 +94,7 @@ class Carousel {
 }
 
 new Carousel({
-  el: '.carousel-container',
+  el: ".carousel-container",
   width: 800,
   itemSpace: 20,
-  btn: {
-    left: '.prev',
-    right: '.next'
-  }
 });

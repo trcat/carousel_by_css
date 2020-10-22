@@ -17,12 +17,3 @@ body {
   line-height: 200px;
   font-size: 18px;
 }
-
-.btn-group {
-  margin-top: 20px;
-}
-
-.prev,
-.next {
-  cursor: pointer;
-}
