@@ -10,17 +10,17 @@ class Carousel {
   }
   init() {
     this.initContainer();
-    this.initWrap();
-    this.initItems();
     this.generateStyleTag();
   }
   initContainer() {
     this.container = document.querySelector(".carousel-container");
-    this.container.style.width = this.containerWidth + 'px';
+    this.container.style.width = this.containerWidth + "px";
     this.container.style.overflow = "hidden";
+    this.initWrap();
   }
   initWrap() {
     this.wrap = document.querySelector(".carousel-wrap");
+    this.initItems();
     let length = 0;
     const children = this.wrap.children;
 
@@ -41,6 +41,27 @@ class Carousel {
   initItems() {
     this.items = document.getElementsByClassName("carousel-item");
     this.forEachHTMLCollection(this.items, (i) => (i.style.float = "left"));
+    this.generateCloneItems();
+  }
+  generateCloneItems(target) {
+    let count = 0;
+    let result = this.container.offsetWidth;
+
+    const complete = () => {
+      result = result - this.items[count].offsetWidth;
+      if (result > 0) {
+        count += 1;
+        complete();
+      } else {
+        return;
+      }
+    };
+
+    complete();
+
+    for (let i = 0; i <= count; i++) {
+      this.wrap.append(this.items[i].cloneNode(true));
+    }
   }
   generateStyleTag() {
     const styleTag = document.createElement("style");
