@@ -7,11 +7,11 @@ body {
 
 .container {
   width: 800px;
-  height: 250px;
   border: 1px solid;
   border-radius: 4px;
   overflow: hidden;
-  padding-top: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .wrap {
