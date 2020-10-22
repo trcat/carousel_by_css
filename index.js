@@ -4,13 +4,13 @@ class Carousel {
       this.containerEl = options.el;
       this.containerWidth = options.width || 800;
       this.itemSpace = options.itemSpace || 20;
+      this.direction = options.direction || "left";
       this.container = document.querySelector(this.containerEl);
       this.wrap = document.querySelector(`${this.containerEl} .carousel-wrap`);
       this.items = document.querySelectorAll(
         `${this.containerEl} .carousel-wrap .carousel-item`
       );
       this.cloneChildWidth = 0;
-      this.direction = "left";
 
       this.initContainer();
     } else {
@@ -41,7 +41,9 @@ class Carousel {
     this.wrap.style.overflow = "auto";
 
     if (length > this.containerWidth) {
-      this.wrap.style.animation = "move 50s linear infinite both running";
+      this.wrap.style.animation = `move 50s linear infinite both running ${
+        this.direction === "left" ? "normal" : "reverse"
+      }`;
       this.wrap.onmouseover = () => {
         this.wrap.style.animationPlayState = "paused";
       };
@@ -95,6 +97,7 @@ class Carousel {
 
 new Carousel({
   el: ".carousel-container",
+  direction: "right",
   width: 800,
   itemSpace: 20,
 });
