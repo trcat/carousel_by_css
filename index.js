@@ -6,11 +6,7 @@ class Carousel {
     this.container = null;
     this.wrap = null;
     this.items = null;
-    this.init();
-  }
-  init() {
     this.initContainer();
-    this.generateStyleTag();
   }
   initContainer() {
     this.container = document.querySelector(".carousel-container");
@@ -36,13 +32,17 @@ class Carousel {
 
     this.wrap.style.width = length + "px";
     this.wrap.style.overflow = "auto";
-    this.wrap.style.animation = "move 50s linear infinite both running";
-    this.wrap.onmouseover = () => {
-      this.wrap.style.animationPlayState = "paused";
-    };
-    this.wrap.onmouseleave = () => {
-      this.wrap.style.animationPlayState = "running";
-    };
+
+    if (length > this.containerWidth) {
+      this.wrap.style.animation = "move 50s linear infinite both running";
+      this.wrap.onmouseover = () => {
+        this.wrap.style.animationPlayState = "paused";
+      };
+      this.wrap.onmouseleave = () => {
+        this.wrap.style.animationPlayState = "running";
+      };
+      this.generateStyleTag();
+    }
   }
   initItems() {
     this.items = document.getElementsByClassName("carousel-item");
