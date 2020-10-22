@@ -16,7 +16,7 @@ body {
 
 .wrap {
   overflow: auto;
-  width: 4166px;
+  width: 4166px; /* 刚好包含所有内容 (300 * 13 + 12 * 20) */
   animation: move 20s linear infinite both running;
 }
 
@@ -46,6 +46,6 @@ body {
     transform: translateX(0px);
   }
   100% {
-    transform: translateX(-3220px);
+    transform: translateX(-3220px); /* wrap 的宽度 - 显示框的宽度 */
   }
 }
