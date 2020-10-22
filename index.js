@@ -105,7 +105,7 @@ class Carousel {
 
 new Carousel({
   el: ".carousel-container",
-  direction: "right",
+  direction: "left",
   width: 800,
   itemSpace: 20,
   time: 25,
