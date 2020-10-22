@@ -1,21 +1,26 @@
 class Carousel {
   constructor(options) {
-    this.containerWidth = options.width || 800;
-    this.itemSpace = options.itemSpace || 20;
-    this.cloneChildWidth = 0;
-    this.container = null;
-    this.wrap = null;
-    this.items = null;
-    this.initContainer();
+    if (options.el) {
+      this.containerEl = options.el;
+      this.containerWidth = options.width || 800;
+      this.itemSpace = options.itemSpace || 20;
+      this.cloneChildWidth = 0;
+      this.container = null;
+      this.wrap = null;
+      this.items = null;
+      this.initContainer();
+    } else {
+      throw new Error('组件使用不规范, 请务必设定 el 属性!')
+    }
   }
   initContainer() {
-    this.container = document.querySelector(".carousel-container");
+    this.container = document.querySelector(this.containerEl);
     this.container.style.width = this.containerWidth + "px";
     this.container.style.overflow = "hidden";
     this.initWrap();
   }
   initWrap() {
-    this.wrap = document.querySelector(".carousel-wrap");
+    this.wrap = document.querySelector(`${this.containerEl} .carousel-wrap`);
     this.initItems();
     let length = 0;
     const children = this.wrap.children;
@@ -45,7 +50,7 @@ class Carousel {
     }
   }
   initItems() {
-    this.items = document.getElementsByClassName("carousel-item");
+    this.items = document.querySelectorAll(`${this.containerEl} .carousel-wrap .carousel-item`);
     this.forEachHTMLCollection(this.items, (i) => (i.style.float = "left"));
     this.generateCloneItems();
   }
@@ -88,6 +93,7 @@ class Carousel {
 }
 
 new Carousel({
+  el: '.carousel-container',
   width: 800,
   itemSpace: 20,
 });

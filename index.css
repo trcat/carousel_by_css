@@ -1,5 +1,6 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -15,4 +16,13 @@ body {
   text-align: center;
   line-height: 200px;
   font-size: 18px;
+}
+
+.btn-group {
+  margin-top: 20px;
+}
+
+.prev,
+.next {
+  cursor: pointer;
 }
