@@ -17,10 +17,13 @@ body {
 .wrap {
   overflow: auto;
   width: 4166px; /* 刚好包含所有内容 (300 * 13 + 12 * 20) */
+}
+
+.carousel-animation {
   animation: move 50s linear infinite both running;
 }
 
-.wrap:hover {
+.carousel-animation:hover {
   animation-play-state: paused;
 }
 
