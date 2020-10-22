@@ -5,7 +5,7 @@ body {
   height: 100vh;
 }
 
-.container {
+.carousel-container {
   width: 800px;
   border: 1px solid;
   border-radius: 4px;
@@ -14,12 +14,11 @@ body {
   padding-bottom: 25px;
 }
 
-.wrap {
+.carousel-wrap {
   overflow: auto;
-  width: 4166px; /* 刚好包含所有内容 (300 * 13 + 12 * 20) */
 }
 
-.item {
+.carousel-item {
   width: 300px;
   height: 200px;
   background-color: #999;
@@ -32,6 +31,6 @@ body {
   float: left;
 }
 
-.item + .item {
+.carousel-item + .carousel-item {
   margin-left: 20px;
 }

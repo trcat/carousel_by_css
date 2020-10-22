@@ -1,5 +1,5 @@
 class Carousel {
-  constructor() {
+  constructor(options) {
     this.generateStyleTag();
   }
   generateStyleTag() {
