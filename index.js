@@ -36,7 +36,13 @@ class Carousel {
 
     this.wrap.style.width = length + "px";
     this.wrap.style.overflow = "auto";
-    this.wrap.classList.add("carousel-animation");
+    this.wrap.style.animation = "move 50s linear infinite both running";
+    this.wrap.onmouseover = () => {
+      this.wrap.style.animationPlayState = "paused";
+    };
+    this.wrap.onmouseleave = () => {
+      this.wrap.style.animationPlayState = "running";
+    };
   }
   initItems() {
     this.items = document.getElementsByClassName("carousel-item");
@@ -65,19 +71,15 @@ class Carousel {
   }
   generateStyleTag() {
     const styleTag = document.createElement("style");
+    styleTag.id = "move";
     styleTag.append(this.getCarouselAnimation());
 
     document.head.appendChild(styleTag);
   }
   getCarouselAnimation() {
-    let result =
-      ".carousel-animation {animation: move 50s linear infinite both running;}";
-    result += ".carousel-animation:hover {animation-play-state: paused;}";
-    result += `@keyframes move {0% {transform: translateX(0px);}100% {transform: translateX(-${
+    return `@keyframes move {0% {transform: translateX(0px);}100% {transform: translateX(-${
       this.wrap.offsetWidth - 3 * this.cloneChildWidth - 2 * this.itemSpace
     }px);}`;
-
-    return result;
   }
   forEachHTMLCollection(collection, callback) {
     for (let i = 0; i < collection.length; i++) {
