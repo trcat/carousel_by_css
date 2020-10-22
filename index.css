@@ -19,14 +19,6 @@ body {
   width: 4166px; /* 刚好包含所有内容 (300 * 13 + 12 * 20) */
 }
 
-.carousel-animation {
-  animation: move 50s linear infinite both running;
-}
-
-.carousel-animation:hover {
-  animation-play-state: paused;
-}
-
 .item {
   width: 300px;
   height: 200px;
@@ -42,13 +34,4 @@ body {
 
 .item + .item {
   margin-left: 20px;
-}
-
-@keyframes move {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(-3220px); /* wrap 的宽度 - 显示框的宽度 */
-  }
 }
